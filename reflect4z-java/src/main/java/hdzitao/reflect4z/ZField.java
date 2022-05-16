@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
  * field封装类
  */
 public class ZField extends ReflectElement<Field>
-        implements ZAnnotationElement<Field>, InheritedElement {
+        implements ZAnnotationElement<Field>, InheritedElement, ZModifierElement {
 
     /**
      * 子类信息
@@ -128,5 +128,10 @@ public class ZField extends ReflectElement<Field>
     @Override
     public Class<?> getInheritedType() {
         return this.inheritedType != null ? this.inheritedType : this.java.getDeclaringClass();
+    }
+
+    @Override
+    public ZModifier getModifiers() {
+        return new ZModifier(this.java.getModifiers());
     }
 }

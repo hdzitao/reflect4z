@@ -9,7 +9,7 @@ import java.lang.annotation.Annotation;
 /**
  * 参数封装类
  */
-public class ZParameter extends ReflectElement<Parameter> implements ZAnnotationElement<Parameter> {
+public class ZParameter extends ReflectElement<Parameter> implements ZAnnotationElement<Parameter>, ZModifierElement {
 
     private ZParameter(Parameter java) {
         super(java);
@@ -121,5 +121,10 @@ public class ZParameter extends ReflectElement<Parameter> implements ZAnnotation
      */
     public boolean isVarArgs() {
         return this.java.isVarArgs();
+    }
+
+    @Override
+    public ZModifier getModifiers() {
+        return new ZModifier(this.java.getModifiers());
     }
 }

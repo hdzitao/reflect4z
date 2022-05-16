@@ -12,7 +12,7 @@ import java.lang.annotation.Annotation;
  * Class的封装类
  */
 public class ZClass extends ReflectElement<Class<?>>
-        implements ZType<Class<?>>, ZAnnotationElement<Class<?>>, Dynamic {
+        implements ZType<Class<?>>, ZAnnotationElement<Class<?>>, Dynamic, ZModifierElement {
 
     /**
      * 创建ZClass
@@ -342,5 +342,10 @@ public class ZClass extends ReflectElement<Class<?>>
     @Override
     public <T> T send(String methodName, Object... args) {
         return ObjectResolver.staticInvoke(this.java, methodName, args);
+    }
+
+    @Override
+    public ZModifier getModifiers() {
+        return new ZModifier(this.java.getModifiers());
     }
 }

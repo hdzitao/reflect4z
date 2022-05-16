@@ -255,7 +255,7 @@ public class JavaZObjectTest {
 
     @Test
     public void packageModifier() {
-//        ZMethod testPackage = this.zObject.getZClass().getMethod("testPackage");
-//        assertTrue(testPackage.isPackage());
+        ZMethod testPackage = this.zObject.getZClass().getZMethod("testPackage");
+        assertTrue(testPackage.getModifiers().isPackaged());
     }
 }

@@ -3,7 +3,9 @@ package hdzitao.reflect4z;
 import hdzitao.reflect4z.list.ZClassList;
 import hdzitao.reflect4z.list.ZGenericList;
 import hdzitao.reflect4z.reflect.GenericResolver;
+import hdzitao.reflect4z.reflect.JDKVersionResolver;
 import hdzitao.reflect4z.reflect.MethodResolver;
+import hdzitao.reflect4z.reflect.ObjectResolver;
 import lombok.SneakyThrows;
 
 import java.lang.annotation.Annotation;
@@ -12,7 +14,7 @@ import java.lang.reflect.Method;
 /**
  * method封装类
  */
-public class ZMethod extends ZExecutable<Method> implements InheritedElement {
+public class ZMethod extends ZExecutable<Method> implements InheritedElement, ZModifierElement {
     private Class<?> inheritedType;
 
     private ZMethod(Method method) {
@@ -117,5 +119,19 @@ public class ZMethod extends ZExecutable<Method> implements InheritedElement {
     @Override
     protected Annotation[][] getParameterAnnotations() {
         return this.java.getParameterAnnotations();
+    }
+
+    @Override
+    public ZModifier getModifiers() {
+        return new ZModifier(this.java.getModifiers());
+    }
+
+    /**
+     * 判断method是否是interface default method
+     *
+     * @return true 如果是接口默认方法
+     */
+    public boolean isDefault() {
+        return JDKVersionResolver.isSinceJDK8() && (boolean) ObjectResolver.invoke(this.java, "isDefault");
     }
 }

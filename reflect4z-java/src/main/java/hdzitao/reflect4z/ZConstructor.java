@@ -10,7 +10,7 @@ import java.lang.reflect.Constructor;
 /**
  * 构造函数封装类
  */
-public class ZConstructor extends ZExecutable<Constructor<?>> {
+public class ZConstructor extends ZExecutable<Constructor<?>> implements ZModifierElement {
     private ZConstructor(Constructor<?> constructor) {
         super(constructor);
         this.java.setAccessible(true);
@@ -77,5 +77,10 @@ public class ZConstructor extends ZExecutable<Constructor<?>> {
     @Override
     protected Annotation[][] getParameterAnnotations() {
         return this.java.getParameterAnnotations();
+    }
+
+    @Override
+    public ZModifier getModifiers() {
+        return new ZModifier(this.java.getModifiers());
     }
 }
