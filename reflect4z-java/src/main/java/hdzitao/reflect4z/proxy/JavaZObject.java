@@ -16,7 +16,7 @@ import java.lang.reflect.Proxy;
  * @author taojinhou
  * @since 0.1.0
  */
-public class JavaZObject<O> extends ZProxy<O> {
+public class JavaZObject<O> extends ZObject<O> implements ZProxy {
     private final Class<?>[] newInterfaces;
     private final ClassLoader loader;
 

@@ -37,7 +37,8 @@ public class ParameterJDK8 implements Parameter {
 
     @Override
     public String getName() {
-        return ObjectResolver.invoke(this.parameter, "getName");
+        ZParam zParam = getAnnotation(ZParam.class);
+        return zParam == null ? (String) ObjectResolver.invoke(this.parameter, "getName") : zParam.value();
     }
 
     @Override

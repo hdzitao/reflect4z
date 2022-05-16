@@ -9,19 +9,19 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>reflect4z-java</artifactId>
+    <artifactId>reflect4z-test</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
 
         <dependency>
             <groupId>hdzitao.reflect4z</groupId>
-            <artifactId>reflect4z-test</artifactId>
-            <scope>test</scope>
+            <artifactId>reflect4z-java</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
+
 </project>

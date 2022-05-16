@@ -73,7 +73,8 @@ public class ParameterJDK7 implements Parameter {
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("getName");
+        ZParam zParam = getAnnotation(ZParam.class);
+        return zParam == null ? "arg" + this.index : zParam.value();
     }
 
     @Override
