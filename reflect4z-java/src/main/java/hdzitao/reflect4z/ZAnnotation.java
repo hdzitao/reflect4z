@@ -74,7 +74,7 @@ public class ZAnnotation extends ReflectElement<Annotation> {
      *
      * @return 注解类型
      */
-    public ZClass annotationType() {
+    public ZClass annotationZType() {
         return ZClass.forClass(this.java.annotationType());
     }
 

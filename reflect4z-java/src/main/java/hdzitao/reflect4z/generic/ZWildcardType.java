@@ -1,6 +1,7 @@
 package hdzitao.reflect4z.generic;
 
 import hdzitao.reflect4z.ReflectElement;
+import hdzitao.reflect4z.ZType;
 import hdzitao.reflect4z.list.ZGenericList;
 
 import java.lang.reflect.WildcardType;
@@ -8,7 +9,7 @@ import java.lang.reflect.WildcardType;
 /**
  * WildcardType泛型通配符表达式封装类
  */
-public class ZWildcardType extends ReflectElement<WildcardType> {
+public class ZWildcardType extends ReflectElement<WildcardType> implements ZType<WildcardType> {
     private ZWildcardType(WildcardType java) {
         super(java);
     }

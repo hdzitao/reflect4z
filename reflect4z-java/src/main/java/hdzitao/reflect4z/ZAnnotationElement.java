@@ -17,7 +17,7 @@ public interface ZAnnotationElement<E extends AnnotatedElement> extends Reflect<
      * @param <A>             注解类型
      * @return 注解实例或null
      */
-    <A extends Annotation> A getJavaAnnotation(Class<A> annotationClass);
+    <A extends Annotation> A getAnnotation(Class<A> annotationClass);
 
     /**
      * 注解 ZAnnotation封装
@@ -25,7 +25,7 @@ public interface ZAnnotationElement<E extends AnnotatedElement> extends Reflect<
      * @param annotationClass 想获取的注解类型
      * @return ZAnnotation封装的注解实例
      */
-    ZAnnotation getAnnotation(Class<? extends Annotation> annotationClass);
+    ZAnnotation getZAnnotation(Class<? extends Annotation> annotationClass);
 
     /**
      * 判断有没有指定注解
@@ -40,12 +40,12 @@ public interface ZAnnotationElement<E extends AnnotatedElement> extends Reflect<
      *
      * @return 全部注解
      */
-    ZAnnotationList getAnnotations();
+    ZAnnotationList getZAnnotations();
 
     /**
      * 获取全部注解(不包含继承的)
      *
      * @return 全部注解(不包含继承的)
      */
-    ZAnnotationList getDeclaredAnnotations();
+    ZAnnotationList getDeclaredZAnnotations();
 }

@@ -16,12 +16,12 @@ public class ZParameter extends ReflectElement<Parameter> implements ZAnnotation
     }
 
     @Override
-    public <A extends Annotation> A getJavaAnnotation(Class<A> annotationClass) {
+    public <A extends Annotation> A getAnnotation(Class<A> annotationClass) {
         return AnnotationResolver.getJavaAnnotation(this.java, annotationClass);
     }
 
     @Override
-    public ZAnnotation getAnnotation(Class<? extends Annotation> annotationClass) {
+    public ZAnnotation getZAnnotation(Class<? extends Annotation> annotationClass) {
         return AnnotationResolver.getAnnotation(this.java, annotationClass);
     }
 
@@ -31,12 +31,12 @@ public class ZParameter extends ReflectElement<Parameter> implements ZAnnotation
     }
 
     @Override
-    public ZAnnotationList getAnnotations() {
+    public ZAnnotationList getZAnnotations() {
         return AnnotationResolver.getAnnotations(this.java);
     }
 
     @Override
-    public ZAnnotationList getDeclaredAnnotations() {
+    public ZAnnotationList getDeclaredZAnnotations() {
         return AnnotationResolver.getDeclaredAnnotations(this.java);
     }
 
@@ -82,7 +82,7 @@ public class ZParameter extends ReflectElement<Parameter> implements ZAnnotation
      *
      * @return 泛型
      */
-    public ZGeneric getParameterizedType() {
+    public ZGeneric getParameterizedZType() {
         return ZGeneric.forType(this.java.getParameterizedType());
     }
 
@@ -91,7 +91,7 @@ public class ZParameter extends ReflectElement<Parameter> implements ZAnnotation
      *
      * @return 参数类型
      */
-    public ZClass getType() {
+    public ZClass getZType() {
         return ZClass.forClass(this.java.getType());
     }
 

@@ -12,7 +12,7 @@ import java.lang.annotation.Annotation;
  * Class的封装类
  */
 public class ZClass extends ReflectElement<Class<?>>
-        implements ZAnnotationElement<Class<?>>, Dynamic {
+        implements ZType<Class<?>>, ZAnnotationElement<Class<?>>, Dynamic {
 
     /**
      * 创建ZClass
@@ -65,12 +65,12 @@ public class ZClass extends ReflectElement<Class<?>>
     }
 
     @Override
-    public <A extends Annotation> A getJavaAnnotation(Class<A> annotationClass) {
+    public <A extends Annotation> A getAnnotation(Class<A> annotationClass) {
         return AnnotationResolver.getJavaAnnotation(this.java, annotationClass);
     }
 
     @Override
-    public ZAnnotation getAnnotation(Class<? extends Annotation> annotationClass) {
+    public ZAnnotation getZAnnotation(Class<? extends Annotation> annotationClass) {
         return AnnotationResolver.getAnnotation(this.java, annotationClass);
     }
 
@@ -80,12 +80,12 @@ public class ZClass extends ReflectElement<Class<?>>
     }
 
     @Override
-    public ZAnnotationList getAnnotations() {
+    public ZAnnotationList getZAnnotations() {
         return AnnotationResolver.getAnnotations(this.java);
     }
 
     @Override
-    public ZAnnotationList getDeclaredAnnotations() {
+    public ZAnnotationList getDeclaredZAnnotations() {
         return AnnotationResolver.getDeclaredAnnotations(this.java);
     }
 
@@ -118,7 +118,7 @@ public class ZClass extends ReflectElement<Class<?>>
      * @param argTypes 参数类型列表
      * @return 构造函数
      */
-    public ZConstructor getConstructor(Class<?>... argTypes) {
+    public ZConstructor getZConstructor(Class<?>... argTypes) {
         return ZConstructor.forConstructor(ClassResolver.getConstructor(this.java, argTypes));
     }
 
@@ -127,10 +127,9 @@ public class ZClass extends ReflectElement<Class<?>>
      *
      * @return 全部构造方法
      */
-    public ZConstructorList getConstructors() {
+    public ZConstructorList getZConstructors() {
         return new ZConstructorList(this.java.getDeclaredConstructors());
     }
-
 
 
     /**
@@ -139,7 +138,7 @@ public class ZClass extends ReflectElement<Class<?>>
      * @param name field名字
      * @return field
      */
-    public ZField getField(String name) {
+    public ZField getZField(String name) {
         return ZField.forField(ClassResolver.getField(this.java, name)).withInheritedType(this.java);
     }
 
@@ -149,12 +148,8 @@ public class ZClass extends ReflectElement<Class<?>>
      * @param name field名字
      * @return field
      */
-    public ZField getDeclaredField(String name) {
-        try {
-            return ZField.forField(this.java.getDeclaredField(name)).withInheritedType(this.java);
-        } catch (NoSuchFieldException e) {
-            return null;
-        }
+    public ZField getDeclaredZField(String name) {
+        return ZField.forField(ClassResolver.getDeclaredField(this.java, name)).withInheritedType(this.java);
     }
 
     /**
@@ -162,7 +157,7 @@ public class ZClass extends ReflectElement<Class<?>>
      *
      * @return 全部fields
      */
-    public ZFieldList getFields() {
+    public ZFieldList getZFields() {
         return new ZFieldList(ClassResolver.getFields(this.java)).withInheritedType(this.java);
     }
 
@@ -171,7 +166,7 @@ public class ZClass extends ReflectElement<Class<?>>
      *
      * @return 当前类的全部字段
      */
-    public ZFieldList getDeclaredFields() {
+    public ZFieldList getDeclaredZFields() {
         return new ZFieldList(this.java.getDeclaredFields()).withInheritedType(this.java);
     }
 
@@ -182,7 +177,7 @@ public class ZClass extends ReflectElement<Class<?>>
      * @param argsType 参数类型列表
      * @return method
      */
-    public ZMethod getMethod(String name, Class<?>... argsType) {
+    public ZMethod getZMethod(String name, Class<?>... argsType) {
         return ZMethod.forMethod(ClassResolver.getMethod(this.java, name, argsType)).withInheritedType(this.java);
     }
 
@@ -193,12 +188,8 @@ public class ZClass extends ReflectElement<Class<?>>
      * @param argsType 参数类型列表
      * @return method
      */
-    public ZMethod getDeclaredMethod(String name, Class<?>... argsType) {
-        try {
-            return ZMethod.forMethod(this.java.getDeclaredMethod(name, argsType)).withInheritedType(this.java);
-        } catch (NoSuchMethodException e) {
-            return null;
-        }
+    public ZMethod getDeclaredZMethod(String name, Class<?>... argsType) {
+        return ZMethod.forMethod(ClassResolver.getDeclaredMethod(this.java, name, argsType)).withInheritedType(this.java);
     }
 
     /**
@@ -206,7 +197,7 @@ public class ZClass extends ReflectElement<Class<?>>
      *
      * @return 全部methods
      */
-    public ZMethodList getMethods() {
+    public ZMethodList getZMethods() {
         return new ZMethodList(ClassResolver.getMethods(this.java)).withInheritedType(this.java);
     }
 
@@ -215,7 +206,7 @@ public class ZClass extends ReflectElement<Class<?>>
      *
      * @return 当前类全部methods
      */
-    public ZMethodList getDeclaredMethods() {
+    public ZMethodList getDeclaredZMethods() {
         return new ZMethodList(this.java.getDeclaredMethods()).withInheritedType(this.java);
     }
 
@@ -224,7 +215,7 @@ public class ZClass extends ReflectElement<Class<?>>
      *
      * @return 全部实现的接口
      */
-    public ZClassList getInterfaces() {
+    public ZClassList getZInterfaces() {
         return new ZClassList(ClassResolver.getInterfaces(this.java));
     }
 
@@ -280,7 +271,7 @@ public class ZClass extends ReflectElement<Class<?>>
      *
      * @return 数组元素类型
      */
-    public ZClass getComponentType() {
+    public ZClass getComponentZType() {
         return ZClass.forClass(this.java.getComponentType());
     }
 

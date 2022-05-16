@@ -1,6 +1,7 @@
 package hdzitao.reflect4z.generic;
 
 import hdzitao.reflect4z.ReflectElement;
+import hdzitao.reflect4z.ZType;
 import hdzitao.reflect4z.list.ZGenericList;
 
 import java.lang.reflect.GenericDeclaration;
@@ -9,7 +10,7 @@ import java.lang.reflect.TypeVariable;
 /**
  * TypeVariable泛型变量封装类
  */
-public class ZTypeVariable<D extends GenericDeclaration> extends ReflectElement<TypeVariable<D>> {
+public class ZTypeVariable<D extends GenericDeclaration> extends ReflectElement<TypeVariable<D>> implements ZType<TypeVariable<D>> {
     private ZTypeVariable(TypeVariable<D> java) {
         super(java);
     }

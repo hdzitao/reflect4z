@@ -37,7 +37,7 @@ public class ZMethod extends ZExecutable<Method> implements InheritedElement {
     }
 
     @Override
-    public ZGenericList getGenericParameterTypes() {
+    public ZGenericList getGenericParameterZTypes() {
         return new ZGenericList(GenericResolver.resolveParamTypes(this.java, getInheritedType()));
     }
 
@@ -46,7 +46,7 @@ public class ZMethod extends ZExecutable<Method> implements InheritedElement {
      *
      * @return 返回类型
      */
-    public ZClass getReturnType() {
+    public ZClass getReturnZType() {
         return ZClass.forClass(this.java.getReturnType());
     }
 
@@ -55,7 +55,7 @@ public class ZMethod extends ZExecutable<Method> implements InheritedElement {
      *
      * @return 返回类型(带泛型信息)
      */
-    public ZGeneric getGenericReturnType() {
+    public ZGeneric getGenericReturnZType() {
         return ZGeneric.forType(GenericResolver.resolveReturnType(this.java, getInheritedType()));
     }
 
@@ -90,7 +90,7 @@ public class ZMethod extends ZExecutable<Method> implements InheritedElement {
     }
 
     @Override
-    public ZClass getDeclaringClass() {
+    public ZClass getDeclaringZClass() {
         return ZClass.forClass(this.java.getDeclaringClass());
     }
 
@@ -100,7 +100,7 @@ public class ZMethod extends ZExecutable<Method> implements InheritedElement {
     }
 
     @Override
-    public ZClassList getParameterTypes() {
+    public ZClassList getParameterZTypes() {
         return new ZClassList(this.java.getParameterTypes());
     }
 
@@ -110,7 +110,7 @@ public class ZMethod extends ZExecutable<Method> implements InheritedElement {
     }
 
     @Override
-    public ZClassList getExceptionTypes() {
+    public ZClassList getExceptionZTypes() {
         return new ZClassList(this.java.getExceptionTypes());
     }
 

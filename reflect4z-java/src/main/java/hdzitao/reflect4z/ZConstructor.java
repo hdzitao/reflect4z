@@ -40,7 +40,7 @@ public class ZConstructor extends ZExecutable<Constructor<?>> {
     }
 
     @Override
-    public ZGenericList getGenericParameterTypes() {
+    public ZGenericList getGenericParameterZTypes() {
         return new ZGenericList(this.java.getGenericParameterTypes());
     }
 
@@ -50,7 +50,7 @@ public class ZConstructor extends ZExecutable<Constructor<?>> {
     }
 
     @Override
-    public ZClass getDeclaringClass() {
+    public ZClass getDeclaringZClass() {
         return ZClass.forClass(this.java.getDeclaringClass());
     }
 
@@ -60,7 +60,7 @@ public class ZConstructor extends ZExecutable<Constructor<?>> {
     }
 
     @Override
-    public ZClassList getParameterTypes() {
+    public ZClassList getParameterZTypes() {
         return new ZClassList(this.java.getParameterTypes());
     }
 
@@ -70,7 +70,7 @@ public class ZConstructor extends ZExecutable<Constructor<?>> {
     }
 
     @Override
-    public ZClassList getExceptionTypes() {
+    public ZClassList getExceptionZTypes() {
         return new ZClassList(this.java.getExceptionTypes());
     }
 

@@ -25,12 +25,12 @@ public abstract class ZExecutable<E extends AnnotatedElement> extends ReflectEle
     }
 
     @Override
-    public <A extends Annotation> A getJavaAnnotation(Class<A> annotationClass) {
+    public <A extends Annotation> A getAnnotation(Class<A> annotationClass) {
         return AnnotationResolver.getJavaAnnotation(this.java, annotationClass);
     }
 
     @Override
-    public ZAnnotation getAnnotation(Class<? extends Annotation> annotationClass) {
+    public ZAnnotation getZAnnotation(Class<? extends Annotation> annotationClass) {
         return AnnotationResolver.getAnnotation(this.java, annotationClass);
     }
 
@@ -40,12 +40,12 @@ public abstract class ZExecutable<E extends AnnotatedElement> extends ReflectEle
     }
 
     @Override
-    public ZAnnotationList getAnnotations() {
+    public ZAnnotationList getZAnnotations() {
         return AnnotationResolver.getAnnotations(this.java);
     }
 
     @Override
-    public ZAnnotationList getDeclaredAnnotations() {
+    public ZAnnotationList getDeclaredZAnnotations() {
         return AnnotationResolver.getDeclaredAnnotations(this.java);
     }
 
@@ -54,7 +54,7 @@ public abstract class ZExecutable<E extends AnnotatedElement> extends ReflectEle
      *
      * @return 声明类
      */
-    public abstract ZClass getDeclaringClass();
+    public abstract ZClass getDeclaringZClass();
 
     /**
      * 获取名字
@@ -68,7 +68,7 @@ public abstract class ZExecutable<E extends AnnotatedElement> extends ReflectEle
      *
      * @return 参数类型列表
      */
-    public abstract ZClassList getParameterTypes();
+    public abstract ZClassList getParameterZTypes();
 
     /**
      * 获取参数类型(带泛型信息)列表
@@ -79,7 +79,7 @@ public abstract class ZExecutable<E extends AnnotatedElement> extends ReflectEle
      *
      * @return 参数类型(带泛型信息)列表
      */
-    public abstract ZGenericList getGenericParameterTypes();
+    public abstract ZGenericList getGenericParameterZTypes();
 
     /**
      * 获取参数数量
@@ -93,7 +93,7 @@ public abstract class ZExecutable<E extends AnnotatedElement> extends ReflectEle
      *
      * @return 声明的异常类型列表
      */
-    public abstract ZClassList getExceptionTypes();
+    public abstract ZClassList getExceptionZTypes();
 
     /**
      * 执行方法
@@ -110,13 +110,13 @@ public abstract class ZExecutable<E extends AnnotatedElement> extends ReflectEle
      *
      * @return 参数列表
      */
-    public ZParameterList getParameters() {
+    public ZParameterList getZParameters() {
         if (JDKVersionResolver.isSinceJDK8()) {
             Object[] parameters = ObjectResolver.invoke(this.java, "getParameters");
             return new ZParameterList(ParameterJDK8.newParameters(parameters));
         } else {
-            Class<?>[] parameterTypes = getParameterTypes().java();
-            Type[] genericParameterTypes = getGenericParameterTypes().java();
+            Class<?>[] parameterTypes = getParameterZTypes().java();
+            Type[] genericParameterTypes = getGenericParameterZTypes().java();
             Annotation[][] annotations = getParameterAnnotations();
             return new ZParameterList(ParameterJDK7.newParameters(parameterTypes, genericParameterTypes, annotations));
         }

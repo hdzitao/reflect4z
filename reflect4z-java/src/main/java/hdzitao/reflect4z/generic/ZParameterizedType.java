@@ -2,6 +2,7 @@ package hdzitao.reflect4z.generic;
 
 import hdzitao.reflect4z.ReflectElement;
 import hdzitao.reflect4z.ZGeneric;
+import hdzitao.reflect4z.ZType;
 import hdzitao.reflect4z.list.ZGenericList;
 
 import java.lang.reflect.ParameterizedType;
@@ -9,7 +10,7 @@ import java.lang.reflect.ParameterizedType;
 /**
  * ParameterizedType泛型封装类
  */
-public class ZParameterizedType extends ReflectElement<ParameterizedType> {
+public class ZParameterizedType extends ReflectElement<ParameterizedType> implements ZType<ParameterizedType> {
     private ZParameterizedType(ParameterizedType java) {
         super(java);
     }

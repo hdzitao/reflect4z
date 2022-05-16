@@ -75,7 +75,7 @@ public final class ClassResolver {
      *
      * @param clazz 类
      * @param name  field名字
-     * @return field or null
+     * @return field
      */
     public static Field getField(Class<?> clazz, String name) {
         Class<?> current = clazz;
@@ -88,6 +88,23 @@ public final class ClassResolver {
 
         throw new IllegalArgumentException("Can't find " + clazz.getName() + "." + name);
     }
+
+    /**
+     * 字段
+     *
+     * @param clazz 类
+     * @param name  field名字
+     * @return field
+     */
+    public static Field getDeclaredField(Class<?> clazz, String name) {
+        try {
+            return clazz.getDeclaredField(name);
+        } catch (NoSuchFieldException ignore) {
+        }
+
+        throw new IllegalArgumentException("Can't find " + clazz.getName() + "." + name);
+    }
+
 
     /**
      * 全部字段
@@ -156,6 +173,33 @@ public final class ClassResolver {
             }
         }
         // 候选方法选举
+        if ((candidate = selectCandidates(candidates)) != null) {
+            return candidate;
+        }
+
+        throw new IllegalArgumentException("Can't find " +
+                clazz.getName() + "." + name + " with " +
+                Arrays.toString(argsType));
+    }
+
+    /**
+     * 方法
+     *
+     * @param clazz    类
+     * @param name     方法名字
+     * @param argsType 参数类型
+     * @return method or null
+     */
+    public static Method getDeclaredMethod(Class<?> clazz, String name, Class<?>... argsType) {
+        List<Method> candidates = new ArrayList<>();
+        // DeclaredMethods方法候选
+        for (Method method : clazz.getDeclaredMethods()) {
+            if (voteMethodCandidates(method, name, argsType, candidates)) {
+                return method;
+            }
+        }
+        // 候选方法选举
+        Method candidate;
         if ((candidate = selectCandidates(candidates)) != null) {
             return candidate;
         }

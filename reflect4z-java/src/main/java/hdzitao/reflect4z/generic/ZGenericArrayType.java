@@ -2,13 +2,14 @@ package hdzitao.reflect4z.generic;
 
 import hdzitao.reflect4z.ReflectElement;
 import hdzitao.reflect4z.ZGeneric;
+import hdzitao.reflect4z.ZType;
 
 import java.lang.reflect.GenericArrayType;
 
 /**
  * GenericArrayType泛型数组封装类
  */
-public class ZGenericArrayType extends ReflectElement<GenericArrayType> {
+public class ZGenericArrayType extends ReflectElement<GenericArrayType> implements ZType<GenericArrayType> {
     private ZGenericArrayType(GenericArrayType java) {
         super(java);
     }

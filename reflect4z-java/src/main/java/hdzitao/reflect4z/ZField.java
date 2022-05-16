@@ -41,12 +41,12 @@ public class ZField extends ReflectElement<Field>
     }
 
     @Override
-    public <A extends Annotation> A getJavaAnnotation(Class<A> annotationClass) {
+    public <A extends Annotation> A getAnnotation(Class<A> annotationClass) {
         return AnnotationResolver.getJavaAnnotation(this.java, annotationClass);
     }
 
     @Override
-    public ZAnnotation getAnnotation(Class<? extends Annotation> annotationClass) {
+    public ZAnnotation getZAnnotation(Class<? extends Annotation> annotationClass) {
         return AnnotationResolver.getAnnotation(this.java, annotationClass);
     }
 
@@ -56,12 +56,12 @@ public class ZField extends ReflectElement<Field>
     }
 
     @Override
-    public ZAnnotationList getAnnotations() {
+    public ZAnnotationList getZAnnotations() {
         return AnnotationResolver.getAnnotations(this.java);
     }
 
     @Override
-    public ZAnnotationList getDeclaredAnnotations() {
+    public ZAnnotationList getDeclaredZAnnotations() {
         return AnnotationResolver.getDeclaredAnnotations(this.java);
     }
 
@@ -70,7 +70,7 @@ public class ZField extends ReflectElement<Field>
      *
      * @return 声明类
      */
-    public ZClass getDeclaringClass() {
+    public ZClass getDeclaringZClass() {
         return ZClass.forClass(this.java.getDeclaringClass());
     }
 
@@ -88,7 +88,7 @@ public class ZField extends ReflectElement<Field>
      *
      * @return field类型
      */
-    public ZClass getType() {
+    public ZClass getZType() {
         return ZClass.forClass(this.java.getType());
     }
 
@@ -97,7 +97,7 @@ public class ZField extends ReflectElement<Field>
      *
      * @return 字段泛型
      */
-    public ZGeneric getGenericType() {
+    public ZGeneric getGenericZType() {
         return ZGeneric.forType(GenericResolver.resolveFieldType(this.java, getInheritedType()));
     }
 

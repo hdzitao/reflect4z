@@ -77,7 +77,7 @@ public class JavaZObjectTest {
     @Test
     public void reflectMethod() {
         // 反射方法
-        final ZMethod show = zObject.getZClass().getMethod("show", String.class, int.class);
+        final ZMethod show = zObject.getZClass().getZMethod("show", String.class, int.class);
         // 新生成一个重写了show方法的实例
         final Show newShow_1st = zObject.method(show.java(), new RewrittenMethod() {
             @Override
@@ -125,19 +125,19 @@ public class JavaZObjectTest {
      */
     @Test
     public void method() throws NoSuchMethodException {
-        ZMethod setAge = ZClass.forClass(SetAge.class).getMethod("setAge", int.class);
+        ZMethod setAge = ZClass.forClass(SetAge.class).getZMethod("setAge", int.class);
         Method setAgeOriginal = SetAge.class.getDeclaredMethod("setAge", int.class);
 
         assertEquals(setAgeOriginal, setAge.java());
 
         assertEquals(int.class, setAgeOriginal.getReturnType());
-        assertTrue(setAge.getReturnType().from(int.class));
+        assertTrue(setAge.getReturnZType().from(int.class));
 
         assertArrayEquals(new Class[]{int.class}, setAgeOriginal.getParameterTypes());
-        assertArrayEquals(setAge.getParameterTypes().java(), new Class[]{int.class});
+        assertArrayEquals(setAge.getParameterZTypes().java(), new Class[]{int.class});
 
         setAge.invoke(this.person, 1);
-        int age = this.zObject.getZClass().getMethod("getAge").invoke(this.person);
+        int age = this.zObject.getZClass().getZMethod("getAge").invoke(this.person);
         assertEquals(1, age);
     }
 
@@ -148,7 +148,7 @@ public class JavaZObjectTest {
     public void reflectMethodPrivate() {
         // 私有方法
         assertEquals("Secret:1", zObject.send("secret", 1));
-        assertEquals("secret", zObject.getZClass().getMethod("secret", Integer.class).getName());
+        assertEquals("secret", zObject.getZClass().getZMethod("secret", Integer.class).getName());
     }
 
     /**
@@ -166,10 +166,10 @@ public class JavaZObjectTest {
      */
     @Test
     public void field() throws NoSuchFieldException {
-        ZField gender = this.zObject.getZClass().getField("gender");
+        ZField gender = this.zObject.getZClass().getZField("gender");
         assertEquals(Man.class.getDeclaredField("gender"), gender.java());
         // 隐藏原始类型
-        assertTrue(gender.getType().from(int.class));
+        assertTrue(gender.getZType().from(int.class));
         // 设置
         gender.set(this.person, 21);
         assertEquals(21, (int) gender.get(this.person));
@@ -188,11 +188,11 @@ public class JavaZObjectTest {
     public void annotation() {
         ZClass zclass = this.zObject.getZClass();
 
-        ClassName className = zclass.getJavaAnnotation(ClassName.class);
+        ClassName className = zclass.getAnnotation(ClassName.class);
         assertNotNull(className);
         assertEquals("taojinhou", className.name());
 
-        ClassAge classAge = zclass.getJavaAnnotation(ClassAge.class);
+        ClassAge classAge = zclass.getAnnotation(ClassAge.class);
         assertNotNull(classAge);
         assertEquals(20, classAge.age());
     }
@@ -204,17 +204,17 @@ public class JavaZObjectTest {
     public void annotations() {
         ZClass zclass = this.zObject.getZClass();
 
-        ZAnnotationList annotations = zclass.getAnnotations();
+        ZAnnotationList annotations = zclass.getZAnnotations();
 
         assertFalse(annotations.isEmpty());
 
-        ZAnnotation search = zclass.getAnnotation(ClassName.class);
+        ZAnnotation search = zclass.getZAnnotation(ClassName.class);
         assertTrue(search.is(ClassName.class));
         ClassName className = search.as(ClassName.class);
         assertNotNull(className);
         assertEquals("taojinhou", className.name());
 
-        search = zclass.getAnnotation(ClassAge.class);
+        search = zclass.getZAnnotation(ClassAge.class);
         assertTrue(search.is(ClassAge.class));
         ClassAge classAge = search.as(ClassAge.class);
         assertNotNull(classAge);
@@ -227,8 +227,8 @@ public class JavaZObjectTest {
     @Test
     public void parameter() {
         ZClass zclass = this.zObject.getZClass();
-        ZMethod paramAnnotation = zclass.getMethod("paramAnnotation", String.class, int.class);
-        ZParameterList parameter = paramAnnotation.getParameters();
+        ZMethod paramAnnotation = zclass.getZMethod("paramAnnotation", String.class, int.class);
+        ZParameterList parameter = paramAnnotation.getZParameters();
         assertFalse(parameter.isEmpty());
 
         ZParameter nameParam = parameter.get(0);
@@ -236,20 +236,20 @@ public class JavaZObjectTest {
         assertEquals(0, nameParam.getIndex());
         assertEquals("name", nameParam.getName());
 
-        ParamName nameParamAnnotation = nameParam.getJavaAnnotation(ParamName.class);
+        ParamName nameParamAnnotation = nameParam.getAnnotation(ParamName.class);
         assertNotNull(nameParamAnnotation);
         assertEquals("taojinhou", nameParamAnnotation.name());
-        assertTrue(nameParam.getType().from(String.class));
+        assertTrue(nameParam.getZType().from(String.class));
 
         ZParameter ageParam = parameter.get(1);
 
         assertEquals(1, ageParam.getIndex());
         assertEquals("age", ageParam.getName());
 
-        ParamAge ageParamAnnotation = ageParam.getJavaAnnotation(ParamAge.class);
+        ParamAge ageParamAnnotation = ageParam.getAnnotation(ParamAge.class);
         assertNotNull(ageParamAnnotation);
         assertEquals(20, ageParamAnnotation.age());
-        assertTrue(ageParam.getType().from(int.class));
+        assertTrue(ageParam.getZType().from(int.class));
 
     }
 
