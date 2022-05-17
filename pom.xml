@@ -10,6 +10,7 @@
     <version>1.0.0</version>
     <modules>
         <module>reflect4z-java</module>
+        <module>reflect4z-cglib</module>
         <module>reflect4z-test</module>
     </modules>
 
