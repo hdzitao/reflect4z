@@ -51,13 +51,13 @@
                         </goals>
                         <configuration>
                             <includes>
-                                <include>hdzi.reflect4z:reflect4z-java</include>
+                                <include>hdzitao.reflect4z:reflect4z-java</include>
                                 <include>cglib:cglib-nodep</include>
                             </includes>
                             <rules>
                                 <rule>
                                     <pattern>net.sf.cglib.**</pattern>
-                                    <result>hdzi.reflect4z.cglib.@1$$$$reflect4z$</result>
+                                    <result>hdzitao.reflect4z.cglib.@1</result>
                                 </rule>
                             </rules>
                         </configuration>
