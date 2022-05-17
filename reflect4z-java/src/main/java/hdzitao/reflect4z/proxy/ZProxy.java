@@ -4,9 +4,6 @@ import java.lang.reflect.Method;
 
 /**
  * java实例代理类,实现运行期重写方法
- *
- * @author taojinhou
- * @since 0.1.0
  */
 public interface ZProxy {
 

@@ -13,9 +13,6 @@ import java.lang.reflect.Method;
  * 用 cglib 实现方法重新
  * <p>
  * 因为 cglib 基于子类实现代理,所以不能用于final class
- *
- * @author taojinhou
- * @since 0.1.0
  */
 public class CGLibZObject<O> extends ZObject<O> implements ZProxy {
     private CGLibZObject(O java) {

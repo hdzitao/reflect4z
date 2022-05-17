@@ -2,9 +2,6 @@ package hdzitao.reflect4z;
 
 /**
  * 元素的修饰
- *
- * @author taojinhou
- * @since 0.1.0
  */
 public interface ZModifierElement {
     /**

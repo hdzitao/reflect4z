@@ -12,9 +12,6 @@ import java.lang.reflect.Proxy;
  * 用 java.lang.reflect.Proxy 实现方法重新
  * <p>
  * 因为 Proxy 针对的是接口,所以只能重写接口方法,生成接口实例
- *
- * @author taojinhou
- * @since 0.1.0
  */
 public class JavaZObject<O> extends ZObject<O> implements ZProxy {
     private final Class<?>[] newInterfaces;

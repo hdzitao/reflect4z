@@ -4,11 +4,7 @@ import java.lang.reflect.Method;
 
 /**
  * 重写方法
- *
- * @author taojinhou
- * @since 0.1.0
  */
-@FunctionalInterface
 public interface RewrittenMethod {
     /**
      * @param proxy  新生成的代理对象
