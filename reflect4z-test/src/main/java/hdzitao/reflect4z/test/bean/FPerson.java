@@ -5,5 +5,5 @@ import hdzitao.reflect4z.test.annotation.ClassName;
 
 @ClassName(name = "taojinhou")
 @ClassAge(age = 20)
-public final class FPerson extends Person {
+public class FPerson extends Person {
 }

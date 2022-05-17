@@ -1,5 +1,6 @@
 package hdzitao.reflect4z;
 
+import hdzitao.reflect4z.bean.ZParamPerson;
 import hdzitao.reflect4z.list.ZAnnotationList;
 import hdzitao.reflect4z.list.ZParameterList;
 import hdzitao.reflect4z.proxy.JavaZObject;
@@ -26,7 +27,7 @@ public class JavaZObjectTest {
 
     @Before
     public void before() {
-        person = new FPerson();
+        person = new ZParamPerson();
         // 代理
         zObject = JavaZObject.forObject(person);
     }

@@ -16,12 +16,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>hdzitao.reflect4z</groupId>
-            <artifactId>reflect4z-java</artifactId>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 
 </project>

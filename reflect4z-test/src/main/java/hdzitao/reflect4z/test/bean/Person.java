@@ -1,7 +1,6 @@
 package hdzitao.reflect4z.test.bean;
 
 
-import hdzitao.reflect4z.parameter.ZParam;
 import hdzitao.reflect4z.test.annotation.ParamAge;
 import hdzitao.reflect4z.test.annotation.ParamName;
 
@@ -51,9 +50,8 @@ public class Person extends Man implements HasName, Show {
         return "can work";
     }
 
-    public void paramAnnotation(@ParamName(name = "taojinhou") @ZParam("name") String name,
-                                @ParamAge(age = 20) @ZParam("age") int age) {
-
+    public void paramAnnotation(@ParamName(name = "taojinhou") String name,
+                                @ParamAge(age = 20) int age) {
     }
 
     void testPackage() {
